@@ -202,8 +202,8 @@ define(
                         type: 'DELETE',
                         
                         success: function(result) {
-                            console.log("Deleted " + id)
                             self.userData.remove( function (item) { return item.id === id; } )
+                            
                         }
                     });
 

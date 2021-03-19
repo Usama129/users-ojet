@@ -109,10 +109,8 @@ define(['knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockouttemplateutils',
 
       // Header
       // Application Name used in Branding Area
-      self.appName = ko.observable("App Name");
-      // User Info used in Global Navigation area
-      self.userLogin = ko.observable("john.smith@oracle.com");
-
+      self.appName = ko.observable("OracleJET Sample Application by Volthread");
+    
       // Footer
       function footerLink(name, id, linkTarget) {
         this.name = name;
@@ -120,12 +118,9 @@ define(['knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockouttemplateutils',
         this.linkTarget = linkTarget;
       }
       self.footerLinks = ko.observableArray([
-        new footerLink('About Oracle', 'aboutOracle', 'http://www.oracle.com/us/corporate/index.html#menu-about'),
-        new footerLink('Contact Us', 'contactUs', 'http://www.oracle.com/us/corporate/contact/index.html'),
-        new footerLink('Legal Notices', 'legalNotices', 'http://www.oracle.com/us/legal/index.html'),
-        new footerLink('Terms Of Use', 'termsOfUse', 'http://www.oracle.com/us/legal/terms/index.html'),
-        new footerLink('Your Privacy Rights', 'yourPrivacyRights', 'http://www.oracle.com/us/legal/privacy/index.html')
-      ]);
+        new footerLink('Volthread', 'aboutOracle', 'https://www.volthread.com/'),
+        new footerLink('Contact Us', 'contactUs', 'https://www.volthread.com/'),
+        ]);
      }
 
      return new ControllerViewModel();
