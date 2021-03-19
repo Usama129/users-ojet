@@ -1,0 +1,96 @@
+<div class="oj-hybrid-padding">
+    <div class="oj-flex oj-flex-init">
+    <oj-button id="deleteUser_btn" disabled="[[!somethingChecked()]]" on-oj-action="[[deleteUser]]">Remove Users</oj-button>
+    <oj-button id="addUser_btn" on-oj-action="[[openAddUserDialog]]">Add a User</oj-button>
+       <oj-table id="table" data="[[usersDataSource]]"
+        columns= '[
+            {"id": "column1", "sortable": "disabled"},
+            {"headerText": "ID", "field": "id"},
+            {"headerText": "Name", "field": "name"},
+            {"headerText": "Gender", "field": "sex"},
+            {"headerText": "Birth Date", "field": "birthDate"}
+        ]'
+    }
+    selection-mode='{"row": "none", "column": "none"}'
+    >
+    <template slot='rowTemplate' data-oj-as='row'>
+    <tr >
+                  <td >
+                    <oj-checkboxset aria-hidden='true' on-value-changed="[[checkSelected]]" class='oj-checkboxset-no-chrome' data-oj-clickthrough="disabled">
+                      <oj-option :id="[[row.data.id]]" value="[[row.data.id]]"></oj-option>
+                    </oj-checkboxset>
+                  </td>
+                  <td on-click="[[function(data, event){ showUpdateUserDialog(row.data, event) }]]">
+                    <div id='id' >
+                      <oj-bind-text value="[[row.data.id]]"></oj-bind-text>
+                    </div>
+                  </td>
+                  <td on-click="[[function(data, event){ showUpdateUserDialog(row.data, event) }]]">
+                    <div id="name" >
+                      <oj-bind-text value="[[row.data.name]]"></oj-bind-text>
+                    </div>
+                  </td>
+                  <td on-click="[[function(data, event){ showUpdateUserDialog(row.data, event) }]]">
+                    <div id="sex" >
+                      <oj-bind-text value="[[row.data.sex]]"></oj-bind-text>
+                    </div>
+                  </td>
+                  <td on-click="[[function(data, event){ showUpdateUserDialog(row.data, event) }]]">
+                    <div id="birthDate" >
+                      <oj-bind-text value="[[row.data.birthDate]]"></oj-bind-text>
+                    </div>
+                  </td>
+                </tr>
+              </template>
+</oj-table>
+
+              
+               <oj-dialog id="editDialog" class="crud-table-demo-hidden" dialog-title="Update User" drag-affordance="title-bar" modality="modeless"
+              resize-behavior="none">
+              <div slot="header" class="oj-helper-clearfix" aria-labelledby="dialog-title-id">
+                <div>
+                  <span id="dialog-title-id" class="oj-dialog-title">Update User</span>
+                </div>
+              </div>
+              <div slot="body">
+                <div class="oj-md-odd-cols-4">
+                  <oj-label for="newName" class="oj-label">Name</oj-label>
+                  <oj-input-text id="newName" value="{{currentUserName}}"></oj-input-text>
+                   <oj-label for="newSex" class="oj-label">Gender</oj-label>
+                  <oj-input-text id="newSex" value="{{currentUserSex}}"></oj-input-text>
+                  <oj-label for="newBirthDate" class="oj-label">Birth Date</oj-label>
+                  <oj-input-text id="newBirthDate" value="{{currentUserBirthDate}}"></oj-input-text>
+                </div>
+              </div>
+              <div slot="footer">
+                <oj-button id="submitBtn" on-oj-action="[[updateUser]]">Change</oj-button>
+                <oj-button id="resetBtn" on-oj-action="[[cancelDialog]]">Cancel</oj-button>
+              </div>
+            </oj-dialog>
+            
+             <oj-dialog id="addUserDialog" class="crud-table-demo-hidden" dialog-title="Add User" drag-affordance="title-bar" modality="modeless"
+              resize-behavior="none">
+              <div slot="header" class="oj-helper-clearfix" aria-labelledby="dialog-title-id">
+                <div>
+                  <span id="dialog-title-id" class="oj-dialog-title">Add User</span>
+                </div>
+              </div>
+              <div slot="body">
+                <div class="oj-md-odd-cols-4">
+                 <oj-label for="newID" class="oj-label">ID</oj-label>
+                  <oj-input-text id="newID" value="{{currentUserId}}" placeholder="Numeric"></oj-input-text>
+                  <oj-label for="newName" class="oj-label">Name</oj-label>
+                  <oj-input-text id="newName" value="{{currentUserName}}" placeholder="No Turkish Characters"></oj-input-text>
+                   <oj-label for="newSex" class="oj-label">Gender</oj-label>
+                  <oj-input-text id="newSex" value="{{currentUserSex}}" placeholder="M/F"></oj-input-text>
+                  <oj-label for="newBirthDate" class="oj-label">Birth Date</oj-label>
+                  <oj-input-text id="newBirthDate" value="{{currentUserBirthDate}}" placeholder="YYYY-MM-DD"></oj-input-text>
+                </div>
+              </div>
+              <div slot="footer">
+                <oj-button id="submitBtn" on-oj-action="[[addUser]]">Add</oj-button>
+                <oj-button id="resetBtn" on-oj-action="[[cancelAdd]]">Cancel</oj-button>
+              </div>
+            </oj-dialog>
+    </div>
+</div>
